@@ -24,15 +24,10 @@ RUN pip3 install python-swiftclient
 RUN pip3 install python-keystoneclient
 RUN pip3 install setuptools python-swiftclient python-keystoneclient wal-e
 
-WORKDIR /opt/stolon
-COPY --from=0 /go/src/github.com/sorintlab/stolon/bin/* ./
-RUN ls -s ./* /usr/bin/.
-RUN chmod +x ./*
 
+COPY --from=0 /go/src/github.com/sorintlab/stolon/bin/* /usr/local/bin/
+RUN chmod +x /usr/local/bin/stolon-keeper /usr/local/bin/stolon-sentinel /usr/local/bin/stolon-proxy /usr/local/bin/stolonctl
 RUN useradd -ms /bin/bash stolon
+WORKDIR /usr/local/bin/
 
 EXPOSE 5432
-
-ADD bin/stolon-keeper bin/stolon-sentinel bin/stolon-proxy bin/stolonctl /usr/local/bin/
-
-RUN chmod +x /usr/local/bin/stolon-keeper /usr/local/bin/stolon-sentinel /usr/local/bin/stolon-proxy /usr/local/bin/stolonctl
