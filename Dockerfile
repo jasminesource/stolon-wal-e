@@ -12,7 +12,7 @@ RUN ./build
 FROM postgres:10.1
 
 RUN apt-get update
-RUN apt-get install -qqy --no-install-recommends build-essential python3 python3-setuptools python3-pip python3-dev lzop \
+RUN apt-get install -qqy --no-install-recommends build-essential python3 python3-setuptools python3-pip python3-dev lzop pv \
             $(apt-get -s dist-upgrade|awk '/^Inst.*ecurity/ {print $2}') &&\
             apt-get clean
 
