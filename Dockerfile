@@ -29,7 +29,8 @@ RUN pip3 install wheel \
                   python-swiftclient \
                   python-keystoneclient \
                   wal-e \
-                  envdir
+                  envdir \
+                  Flask
 
 
 COPY --from=0 /go/src/github.com/sorintlab/stolon/bin/* /usr/local/bin/
